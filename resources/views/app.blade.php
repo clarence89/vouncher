@@ -19,12 +19,6 @@
     </head>
     <body class="font-sans antialiased">
         @inertia
-        <script type="text/javascript">
-            window.Laravel = {
-                csrfToken: "{{ csrf_token() }}",
-                jsPermissions: {!! auth()->check()?auth()->user()->jsPermissions():null !!}
-            }
-        </script>
         @env ('local')
             <script src="http://localhost:3000/browser-sync/browser-sync-client.js"></script>
         @endenv

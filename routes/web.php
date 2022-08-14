@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\VoucherController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\User;
+use App\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +29,11 @@ Route::get('/', function () {
     ]); */
 });
 Route::get('/test', function () {
-    $user = User::where('id', 1)->first();
-    $user->assignRole('super-admin');
-   return $user;
+    $user = Auth::user();
+    $roles = Role::whereHas('role_admins',function($query)use($user){
+        $query->where('user_id',$user->id);
+    })->paginate(5);
+   return $roles;
 });
 
 
@@ -40,6 +45,16 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::post('/create_voucher', [VoucherController::class,'create_voucher'])->name('create.voucher');
+    Route::get('/get_voucher', [VoucherController::class,'get_voucher'])->name('get.voucher');
+
+    Route::group(['middleware' => ['role_or_permission:super-admin|moderate_group']], function () {
+        Route::get('/get_group', [GroupController::class,'get_group'])->name('get.group');
+        Route::get('/get_groupuser', [GroupController::class,'get_groupuser'])->name('get.get_groupuser');
+        Route::post('/remove_user_group', [GroupController::class,'remove_user_group'])->name('get.remove_user_group');
+    });
+
 
 
 

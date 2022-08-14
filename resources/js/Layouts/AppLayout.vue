@@ -9,7 +9,7 @@
 
       <div class="w-full">
         <!-- Top Navbar -->
-        <jet-bar-navigation-menu  />
+        <jet-bar-navigation-menu />
         <!-- End Top Navbar -->
 
         <!-- Content Container -->
@@ -17,7 +17,6 @@
           class="flex-1 relative z-0 overflow-y-auto py-6 focus:outline-none"
           tabindex="0"
         >
-
           <!-- Replace with your content -->
           <div>
             <!-- Content -->

@@ -8,8 +8,6 @@
     </h1>
     <!-- End Title -->
   </div>
-
-
   <jet-bar-container>
     <jet-bar-alert text="This is an alert message." type="danger" />
 
@@ -51,14 +49,12 @@
         </jet-bar-table-data>
         <jet-bar-table-data>Admin</jet-bar-table-data>
         <jet-bar-table-data>
-          <inertia-link href="#" class="text-indigo-600 hover:text-indigo-900"
-            >Edit</inertia-link
-          >
+          <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
         </jet-bar-table-data>
         <jet-bar-table-data>
-          <inertia-link href="#" class="text-gray-400 hover:text-gray-500">
+          <a href="#" class="text-gray-400 hover:text-gray-500">
             <jet-bar-icon type="trash" fill />
-          </inertia-link>
+          </a>
         </jet-bar-table-data>
       </tr>
     </jet-bar-table>

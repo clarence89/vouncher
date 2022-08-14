@@ -6,12 +6,13 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use LaravelAndVueJS\Traits\LaravelPermissionToVueJS;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Voucher;
+use App\Models\GroupAdmins;
 
 class User extends Authenticatable // No Email to use: implements MustVerifyEmail
 {
@@ -21,7 +22,6 @@ class User extends Authenticatable // No Email to use: implements MustVerifyEmai
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;
-    use LaravelPermissionToVueJS;
     /**
      * The attributes that are mass assignable.
      *
@@ -62,4 +62,12 @@ class User extends Authenticatable // No Email to use: implements MustVerifyEmai
     protected $appends = [
         'profile_photo_url',
     ];
+    public function vouchers()
+    {
+        return $this->hasMany(Voucher::class,'users_id');
+    }
+    public function admins()
+    {
+        return $this->hasMany(GroupAdmins::class);
+    }
 }

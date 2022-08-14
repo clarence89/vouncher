@@ -95,8 +95,8 @@
                             Manage Team
                         </div>
 
-                        <inertia-link :href="route('teams.show', $page.props.user.current_team)" class="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100">Team Settings</inertia-link>
-                        <inertia-link :href="route('teams.create')" v-if="$page.props.jetstream.canCreateTeams" class="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100">Create New Team</inertia-link>
+                        <a :href="route('teams.show', $page.props.user.current_team)" class="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100">Team Settings</a>
+                        <a :href="route('teams.create')" v-if="$page.props.jetstream.canCreateTeams" class="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100">Create New Team</a>
                         <div class="border-t border-gray-100"></div>
                         <!-- Team Switcher -->
                         <div class="block px-4 py-2 text-xs text-gray-400">
