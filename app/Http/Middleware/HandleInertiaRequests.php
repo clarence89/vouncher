@@ -54,13 +54,15 @@ class HandleInertiaRequests extends Middleware
                 $permissions->push($value);
             }
         }
-        $request->user()->permissions = $permissions;
-        $request->user()->roles = $roles;
 
+        return array_merge(parent::share($request), [
+            'permission'=> $permissions,
+            'role'=> $roles,
+
+        ]);
     }
 
         return array_merge(parent::share($request), [
-
 
         ]);
     }

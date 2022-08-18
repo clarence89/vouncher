@@ -66,8 +66,9 @@ class User extends Authenticatable // No Email to use: implements MustVerifyEmai
     {
         return $this->hasMany(Voucher::class,'users_id');
     }
-    public function admins()
+/*  Removed: Used Roles as Admins Group of Control
+   public function admins()
     {
         return $this->hasMany(GroupAdmins::class);
-    }
+    } */
 }

@@ -1,7 +1,21 @@
 <template>
   <svg
+    class="mx-auto fill-blue-500"
+    v-if="type === 'add_moderator' && fill"
+    xmlns="http://www.w3.org/2000/svg"
+    height="1.5rem"
+    viewBox="0 0 24 24"
+    width="1.5rem"
+  >
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path
+      d="M13.22 22.61c-.4.15-.8.29-1.22.39-5.16-1.26-9-6.45-9-12V5l9-4 9 4v6c0 .9-.11 1.78-.3 2.65-.81-.41-1.73-.65-2.7-.65-3.31 0-6 2.69-6 6 0 1.36.46 2.61 1.22 3.61zM19 20v2.99s-1.99.01-2 0V20h-3v-2h3v-3h2v3h3v2h-3z"
+    />
+  </svg>
+  <svg
     v-if="type === 'users' && fill"
-    class="w-5 h-5 fill-blue-500"
+    class="mx-auto w-7 h-7 fill-blue-500"
     fill="currentColor"
     viewBox="0 0 20 20"
   >
@@ -10,9 +24,22 @@
     ></path>
   </svg>
   <svg
+    v-if="type === 'download' && fill"
+    xmlns="http://www.w3.org/2000/svg"
+    class="mx-auto w-7 h-7 fill-blue-500"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
+      clip-rule="evenodd"
+    />
+  </svg>
+  <svg
     v-if="type === 'add_users'"
     xmlns="http://www.w3.org/2000/svg"
-    class="h-5 w-5 fill-green-500"
+    class="mx-auto h-7 w-7 fill-green-500"
     viewBox="0 0 20 20"
     fill="currentColor"
   >
@@ -22,7 +49,7 @@
   </svg>
   <svg
     v-if="type === 'users' && !fill"
-    class="w-6 h-6 fill-blue-500"
+    class="mx-auto w-7 h-7 fill-blue-500"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -38,7 +65,7 @@
 
   <svg
     v-if="type === 'money' && fill"
-    class="w-5 h-5"
+    class="mx-auto w-7 h-7"
     fill="currentColor"
     viewBox="0 0 20 20"
   >
@@ -51,7 +78,7 @@
 
   <svg
     v-if="type === 'money' && !fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -67,7 +94,7 @@
 
   <svg
     v-if="type === 'cart' && fill"
-    class="w-5 h-5"
+    class="mx-auto w-7 h-7"
     fill="currentColor"
     viewBox="0 0 20 20"
   >
@@ -78,7 +105,7 @@
 
   <svg
     v-if="type === 'cart' && !fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -94,20 +121,20 @@
 
   <svg
     v-if="type === 'message' && fill"
-    class="w-5 h-5"
+    class="mx-auto w-7 h-7"
     fill="currentColor"
     viewBox="0 0 20 20"
   >
     <path
       fill-rule="evenodd"
-      d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+      d="M18 5v8a2 2 0 01-2 2h-7l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
       clip-rule="evenodd"
     ></path>
   </svg>
 
   <svg
     v-if="type === 'message' && !fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -117,13 +144,13 @@
       stroke-linecap="round"
       stroke-linejoin="round"
       stroke-width="2"
-      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-7l-5 5v-5z"
     ></path>
   </svg>
 
   <svg
     v-if="type === 'eye' && fill"
-    class="w-6 h-6 fill-green-500"
+    class="mx-auto w-7 h-7 fill-green-500"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +165,7 @@
 
   <svg
     v-if="type === 'eye' && !fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -160,7 +187,7 @@
 
   <svg
     v-if="type === 'trash' && fill"
-    class="w-6 h-6 fill-red-500"
+    class="mx-auto w-7 h-7 fill-red-500"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -174,7 +201,7 @@
 
   <svg
     v-if="type === 'trash' && !fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -190,7 +217,7 @@
 
   <svg
     v-if="type === 'search' && fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -204,7 +231,7 @@
 
   <svg
     v-if="type === 'search' && !fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -220,7 +247,7 @@
 
   <svg
     v-if="type === 'x' && fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -234,7 +261,7 @@
 
   <svg
     v-if="type === 'x' && !fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -250,7 +277,7 @@
 
   <svg
     v-if="type === 'plus' && fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -264,7 +291,7 @@
 
   <svg
     v-if="type === 'plus' && !fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -280,7 +307,7 @@
 
   <svg
     v-if="type === 'pencil' && fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -292,7 +319,7 @@
 
   <svg
     v-if="type === 'pencil' && !fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -308,7 +335,7 @@
 
   <svg
     v-if="type === 'pencil-alt' && fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -325,7 +352,7 @@
 
   <svg
     v-if="type === 'pencil-alt' && !fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -341,7 +368,7 @@
 
   <svg
     v-if="type === 'information-circle' && fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -355,7 +382,7 @@
 
   <svg
     v-if="type === 'information-circle' && !fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -371,7 +398,7 @@
 
   <svg
     v-if="type === 'check-circle' && fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -385,7 +412,7 @@
 
   <svg
     v-if="type === 'check-circle' && !fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -401,7 +428,7 @@
 
   <svg
     v-if="type === 'x-circle' && fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -415,7 +442,7 @@
 
   <svg
     v-if="type === 'x-circle' && !fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -431,7 +458,7 @@
 
   <svg
     v-if="type === 'exclamation-circle' && fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -445,7 +472,7 @@
 
   <svg
     v-if="type === 'exclamation-circle' && !fill"
-    class="w-6 h-6"
+    class="mx-auto w-7 h-7"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"

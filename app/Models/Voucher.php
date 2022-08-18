@@ -17,7 +17,7 @@ use App\Model\User;
 
 class Voucher extends Model
 {
-
+    use HasFactory;
     protected $fillable = [
         'users_id',
         'voucher_code',

@@ -9,7 +9,7 @@
       <a
         :href="route('dashboard')"
         class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline"
-        >Jetbar</a
+        >Voucher</a
       >
       <!-- End App Title -->
       <button
@@ -60,18 +60,23 @@
         >
       </template>
       <a
+        v-if="
+          $page.props.role.some(function (il) {
+            return il.name === 'super-admin';
+          })
+        "
         v-on:click="displayContent(1)"
         :class="route().current('profile.show') ? 'bg-gray-200' : 'bg-transparent'"
         class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
         href="#"
-        >Dashboard</a
+        >All Users/Moderators</a
       >
       <a
         v-if="
-          !$page.props.user.roles.some(function (il) {
+          !$page.props.role.some(function (il) {
             return il.name === 'super-admin';
           }) &&
-          !$page.props.user.permissions.some(function (il) {
+          !$page.props.permission.some(function (il) {
             return il.name === 'moderate_group';
           })
         "
@@ -81,9 +86,9 @@
         href="#"
         >Vouchers</a
       >
-      <a
+      <!--       <a
         v-if="
-          $page.props.user.roles.some(function (il) {
+          $page.props.role.some(function (il) {
             return il.name === 'super-admin';
           })
         "
@@ -92,13 +97,13 @@
         class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
         href="#"
         >Add Group</a
-      >
+      > -->
       <a
         v-if="
-          $page.props.user.roles.some(function (il) {
+          $page.props.role.some(function (il) {
             return il.name === 'super-admin';
           }) ||
-          $page.props.user.permissions.some(function (il) {
+          $page.props.permission.some(function (il) {
             return il.name === 'moderate_group';
           })
         "
@@ -106,20 +111,20 @@
         :class="route().current('profile.show') ? 'bg-gray-200' : 'bg-transparent'"
         class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
         href="#"
-        >Manage Group</a
+        >Manage Group Users</a
       >
-      <div
+      <!-- <div
         class="relative"
         v-if="
-          $page.props.user.roles.some(function (il) {
+          $page.props.role.some(function (il) {
             return il.name === 'super-admin';
           }) ||
-          $page.props.user.permissions.some(function (il) {
+          $page.props.permission.some(function (il) {
             return il.name === 'moderate_group';
           })
         "
       >
-        <!--         <button
+               <button
           @click="showingSidebarNavigationDropdown2 = !showingSidebarNavigationDropdown2"
           class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 lg:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
         >
@@ -155,7 +160,7 @@
             <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
               <a
                 v-if="
-                  $page.props.user.roles.some(function (il) {
+                  $page.props.role.some(function (il) {
                     return il.name === 'super-admin';
                   })
                 "
@@ -168,10 +173,10 @@
                 class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 lg:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                 href="#"
                 v-if="
-                  $page.props.user.roles.some(function (il) {
+                  $page.props.role.some(function (il) {
                     return il.name === 'super-admin';
                   }) ||
-                  $page.props.user.permissions.some(function (il) {
+                  $page.props.permission.some(function (il) {
                     return il.name === 'moderate_group';
                   })
                 "
@@ -182,10 +187,10 @@
                 class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 lg:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                 href="#"
                 v-if="
-                  $page.props.user.roles.some(function (il) {
+                  $page.props.role.some(function (il) {
                     return il.name === 'super-admin';
                   }) ||
-                  $page.props.user.permissions.some(function (il) {
+                  $page.props.permission.some(function (il) {
                     return il.name === 'moderate_group';
                   })
                 "
@@ -193,9 +198,9 @@
               >
             </div>
           </div>
-        </transition> -->
-      </div>
-      <div
+        </transition>
+      </div>-->
+      <!--       <div
         v-show="showingSidebarNavigationDropdown2"
         @click="showingSidebarNavigationDropdown2 = false"
         class="fixed inset-0 h-full w-full z-10"
@@ -205,7 +210,7 @@
       <div
         class="relative"
         v-if="
-          $page.props.user.roles.some(function (il) {
+          $page.props.role.some(function (il) {
             return il.name === 'super-admin';
           })
         "
@@ -269,7 +274,7 @@
         @click="showingSidebarNavigationDropdown = false"
         class="fixed inset-0 h-full w-full z-10"
         style="display: none"
-      ></div>
+      ></div> -->
       <jet-bar-responsive-links />
     </nav>
 

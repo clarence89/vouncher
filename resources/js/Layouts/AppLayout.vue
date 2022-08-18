@@ -4,7 +4,15 @@
 
     <div class="lg:flex flex-col lg:flex-row lg:min-h-screen w-full">
       <!-- Sidebar -->
-      <jet-bar-sidebar @displayData="fetchData($event)" />
+
+      <jet-bar-sidebar
+        @displayData="fetchData($event)"
+        v-if="
+          $page.props.role.some(function (il) {
+            return il.name === 'super-admin';
+          })
+        "
+      />
       <!-- End Sidebar -->
 
       <div class="w-full">

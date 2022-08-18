@@ -31,10 +31,35 @@
         :key="voucher_code.id"
       >
         <jet-bar-table-data>{{ voucher_code.voucher_code }}</jet-bar-table-data>
+        <jet-bar-table-data
+          v-on:click="(confirmingUserDeletion = true), (voucher_id = voucher_code.id)"
+        >
+          <jet-bar-icon type="trash" fill
+        /></jet-bar-table-data>
       </tr>
     </jet-bar-table>
     <jet-bar-paginate :items="voucher_codes" @nextLink="paginate1($event)" />
   </jet-bar-container>
+  <jet-confirmation-modal
+    :show="confirmingUserDeletion"
+    @close="confirmingUserDeletion = false"
+  >
+    <template #title> Delete Voucher </template>
+
+    <template #content> Are you sure you want to delete the voucher? </template>
+    <template #footer>
+      <jet-secondary-button @click="confirmingUserDeletion = false">
+        Cancel
+      </jet-secondary-button>
+
+      <jet-danger-button
+        class="ml-2"
+        @click="removeVoucher(), (confirmingUserDeletion = false)"
+      >
+        Delete Voucher
+      </jet-danger-button>
+    </template>
+  </jet-confirmation-modal>
 </template>
 
 <script>
@@ -48,7 +73,9 @@ import JetBarBadge from "@/Components/JetBarBadge";
 import JetBarIcon from "@/Components/JetBarIcon";
 import JetBarPaginate from "@/Components/JetBarSimplePagination";
 import JButton from "@/Jetstream/Button";
+import JetConfirmationModal from "@/Jetstream/ConfirmationModal";
 import axios from "axios";
+import JetDangerButton from "@/Jetstream/DangerButton";
 
 export default {
   components: {
@@ -62,9 +89,13 @@ export default {
     JetBarIcon,
     JButton,
     JetBarPaginate,
+    JetConfirmationModal,
+    JetDangerButton,
   },
   data() {
     return {
+      confirmingUserDeletion: false,
+      voucher_id: null,
       voucher_codes: [],
       alert_status: 0,
       alertmessage: "",
@@ -75,23 +106,53 @@ export default {
     this.getVoucher();
   },
   methods: {
+    removeVoucher() {
+      axios
+        .post(route("delete.voucher"), { voucher_id: this.voucher_id })
+        .then((res) => {
+          this.getVoucher();
+          if (res.data == "Success") {
+            this.alertData(true, "Generated Successfull", "success");
+          } else {
+            this.alertData(true, "Voucher Generation Limit Exceeded!", "danger");
+          }
+        })
+        .catch((e) => console.log(e));
+    },
     generateVoucher() {
       axios
         .post(route("create.voucher"))
         .then((res) => {
           this.getVoucher();
-          this.alert_status = 1;
-          this.alertmessage = "Generated Successfull";
-          this.type = "success";
+          if (res.data == "Success") {
+            this.alertData(true, "Generated Successfull", "success");
+          } else {
+            this.alertData(true, "Voucher Generation Limit Exceeded!", "danger");
+          }
         })
         .catch((e) => console.log(e));
+    },
+    alertData(status, message, type) {
+      this.alert_status = status;
+      this.alertmessage = message;
+      this.type = type;
+      setInterval(
+        function () {
+          this.removeAlertData();
+        }.bind(this),
+        2500
+      );
+    },
+    removeAlertData() {
+      this.alert_status = false;
+      this.alertmessage = "";
+      this.type = "info";
     },
     getVoucher() {
       axios
         .get(route("get.voucher"))
         .then((res) => {
           this.voucher_codes = res.data;
-          console.log(this.voucher_codes);
         })
         .catch((e) => console.log(e));
     },
@@ -105,7 +166,6 @@ export default {
         .get(href)
         .then((res) => {
           this.voucher_codes = res.data;
-          console.log(this.voucher_codes);
         })
         .catch((e) => console.log(e));
     },

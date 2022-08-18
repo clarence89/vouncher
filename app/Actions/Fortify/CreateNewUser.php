@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
+use App\Mailer\LaravelMailer;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -27,10 +28,18 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return User::create([
+        $user =  User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+        $mailer = new LaravelMailer( [
+            [
+                'Email' => $user->email,
+                'Name' => $user->name
+            ]
+        ],"Welcome","<b>Welcome!</b>, <br><br> Your Account has been registered and ready to Generate Voucher Codes <br><br>Cheers!, Thank you!");
+        $mailer->sendMail();
+        return $user;
     }
 }

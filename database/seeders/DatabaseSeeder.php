@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Voucher;
 use App\Models\GroupAdmins;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,17 +23,38 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('adminadmin'),
         ]);
-        $admin = User::create([
+        User::create([
             'name' => 'groupadmin1',
             'email' => 'groupadmin1@gmail.com',
             'password' => Hash::make('groupadmin1'),
         ]);
 
-        $admin = User::create([
+        User::create([
             'name' => 'groupadmin2',
             'email' => 'groupadmin2@gmail.com',
             'password' => Hash::make('groupadmin2'),
         ]);
-        User::factory(10)->create();
+        User::create([
+            'name' => 'useraccount',
+            'email' => 'useraccount@gmail.com',
+            'password' => Hash::make('useraccount'),
+        ]);
+        User::factory(20)->create();
+        Voucher::factory(10)->create([
+            'users_id'=> 3,
+            'voucher_code'=> Str::random(40)
+        ]);
+        Voucher::factory(10)->create([
+            'users_id'=> 4,
+            'voucher_code'=> Str::random(40)
+        ]);
+        Voucher::factory(10)->create([
+            'users_id'=> 5,
+            'voucher_code'=> Str::random(40)
+        ]);
+        Voucher::factory(10)->create([
+            'users_id'=> 6,
+            'voucher_code'=> Str::random(40)
+        ]);
     }
 }

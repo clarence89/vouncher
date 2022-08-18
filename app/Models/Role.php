@@ -7,11 +7,14 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Models\Role as SpatieRole;
 use App\Model\User;
+use Illuminate\Database\Eloquent\Model;
 
-class Role extends SpatieRole
+
+class Role extends Model
 {
-    public function role_admins()
-    {
-        return $this->hasMany(GroupAdmins::class);
-    }
+    protected $table = 'roles';
+    protected $fillable = [
+        'name',
+        'guard_name'
+    ];
 }
