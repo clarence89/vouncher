@@ -388,6 +388,7 @@ export default {
         });
     },
     getUsersModerator(data) {
+      this.selected_users = [];
       this.viewer = "adduser";
       this.confirmingUserView = true;
       axios
@@ -398,6 +399,7 @@ export default {
         .catch((e) => console.log(e));
     },
     getUsers() {
+      this.selected_users = [];
       this.viewer = "adduser";
       this.confirmingUserView = true;
       axios

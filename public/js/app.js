@@ -21334,6 +21334,7 @@ __webpack_require__.r(__webpack_exports__);
     getUsersModerator: function getUsersModerator(data) {
       var _this4 = this;
 
+      this.selected_users = [];
       this.viewer = "adduser";
       this.confirmingUserView = true;
       axios__WEBPACK_IMPORTED_MODULE_14___default().get(route("get.get_user_moderator", data)).then(function (res) {
@@ -21345,6 +21346,7 @@ __webpack_require__.r(__webpack_exports__);
     getUsers: function getUsers() {
       var _this5 = this;
 
+      this.selected_users = [];
       this.viewer = "adduser";
       this.confirmingUserView = true;
       axios__WEBPACK_IMPORTED_MODULE_14___default().get(route("get.get_user")).then(function (res) {
