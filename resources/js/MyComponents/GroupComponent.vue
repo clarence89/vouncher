@@ -414,7 +414,8 @@ export default {
           group_name: this.group_name,
         })
         .then((res) => {
-          console.log(res.data);
+          this.selected_users = [];
+
           this.getGroupUsers1();
         })
         .catch((e) => console.log());

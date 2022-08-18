@@ -21360,7 +21360,7 @@ __webpack_require__.r(__webpack_exports__);
         users: this.selected_users,
         group_name: this.group_name
       }).then(function (res) {
-        console.log(res.data);
+        _this6.selected_users = [];
 
         _this6.getGroupUsers1();
       })["catch"](function (e) {

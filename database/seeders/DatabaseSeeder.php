@@ -41,9 +41,6 @@ class DatabaseSeeder extends Seeder
         ]);
         User::factory(20)->create();
         Voucher::factory(10)->create([
-            'users_id'=> 3,
-        ]);
-        Voucher::factory(10)->create([
             'users_id'=> 4,
         ]);
         Voucher::factory(10)->create([
@@ -51,6 +48,9 @@ class DatabaseSeeder extends Seeder
         ]);
         Voucher::factory(10)->create([
             'users_id'=> 6,
+        ]);
+        Voucher::factory(10)->create([
+            'users_id'=> 7,
         ]);
     }
 }
