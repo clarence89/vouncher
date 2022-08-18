@@ -42,19 +42,15 @@ class DatabaseSeeder extends Seeder
         User::factory(20)->create();
         Voucher::factory(10)->create([
             'users_id'=> 3,
-            'voucher_code'=> Str::random(40)
         ]);
         Voucher::factory(10)->create([
             'users_id'=> 4,
-            'voucher_code'=> Str::random(40)
         ]);
         Voucher::factory(10)->create([
             'users_id'=> 5,
-            'voucher_code'=> Str::random(40)
         ]);
         Voucher::factory(10)->create([
             'users_id'=> 6,
-            'voucher_code'=> Str::random(40)
         ]);
     }
 }
